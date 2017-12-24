@@ -1,0 +1,31 @@
+<div class='container'>
+<% if !flash[:notice].blank? %>
+	<div>
+	<%= flash[:notice] %>
+	</div>
+	<% end %>
+	<br>
+	<%= link_to 'New Material',new_resume_path %>
+	<br>
+	<br>
+	<table border='1'>
+	<thead>
+		<tr>
+			<th>Subject name</th>
+			
+			<th>Download link</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+		<tbody>
+			<% @resumes.each do |resume| %>
+			<tr>
+			<td><%= resume.name %></td>
+			
+			<td><%= link_to 'Download',resume.attachment_url %></td>
+			<td><%= link_to 'Delete', resume, method: :delete, confirm: "Are you sure to delete #{resume.name}?" %></td>
+			</tr>
+			</tbody>
+			<% end %>
+		</tbody>
+	</table>
